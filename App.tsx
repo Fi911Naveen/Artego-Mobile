@@ -1,12 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import AppNavigator from "./src/navigation/AppNavigator";
+import { ThemeProvider } from "react-native-rapi-ui";
+import { LogBox } from "react-native";
+import { AuthProvider } from './src/provider/AuthProvider';
 
 export default function App() {
+
+  const images :any  = [
+    require("./assets/icon.png"),
+    require("./assets/splash.png"),
+    require("./assets/login.png"),
+    require("./assets/register.png"),
+    require("./assets/forget.png"),
+  ];
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider images={images}>
+      <AuthProvider>
+        <AppNavigator />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
