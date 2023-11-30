@@ -160,8 +160,6 @@ export default function ({ navigation }) {
       body: JSON.stringify(reqdata)
     });
     const data = await resp.json();
-    if(data)
-      token = JSON.stringify(data).split(':')[1];
     return data;
   }
 
