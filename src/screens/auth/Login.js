@@ -18,9 +18,9 @@ import { KMS } from 'aws-sdk';
 import querystring from 'querystring';
 import {Buffer} from 'buffer';
 import { AuthContext  } from "../../provider/AuthProvider";
+import { APIEndPoint } from "../../../envirnment";
 
 export default function ({ navigation }) {
-  let endpoint = "http://localhost:3080/api/v1";
   const { isDarkmode, setTheme } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -79,13 +79,14 @@ export default function ({ navigation }) {
           }
       }
       else {
+        setLoading(false);
         Error(res.message);
       }
     });
   }
 
   async function IsDomainRestricted(email, domain) {
-      const url = `${endpoint}/merchants?${querystring.stringify({email,domain})}`;
+      const url = `${APIEndPoint}/merchants?${querystring.stringify({email,domain})}`;
       const _response = await fetch(url);
       return _response;
   }
@@ -151,7 +152,7 @@ export default function ({ navigation }) {
     reqdata['timezone'] = Intl.DateTimeFormat().resolvedOptions().timeZone;
     reqdata['withOutLogin'] = false;
     console.log(reqdata);
-    const resp = await fetch(`${endpoint}/authenticate`, {
+    const resp = await fetch(`${APIEndPoint}/authenticate`, {
       method: 'POST',
       headers: new Headers({
         'Accept': 'application/json',

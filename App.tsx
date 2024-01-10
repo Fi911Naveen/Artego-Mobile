@@ -4,9 +4,11 @@ import AppNavigator from "./src/navigation/AppNavigator";
 import { ThemeProvider } from "react-native-rapi-ui";
 import { LogBox } from "react-native";
 import { AuthProvider } from './src/provider/AuthProvider';
+import { EnvironmentVariables } from './envirnment';
+
 
 export default function App() {
-
+  // console.log(EnvironmentVariables);
   const images :any  = [
     require("./assets/icon.png"),
     require("./assets/splash.png"),

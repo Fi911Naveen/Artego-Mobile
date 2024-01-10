@@ -12,6 +12,7 @@ import {
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthContext } from "../provider/AuthProvider";
+// import TopNavCustom from "./headings/TopNav";
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
@@ -20,20 +21,32 @@ export default function ({ navigation }) {
   return (
     <Layout>
       <TopNav
-        middleContent="Home"
-        rightContent={
+        middleContent="Home" 
+        leftContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
             size={20}
             color={isDarkmode ? themeColor.white100 : themeColor.dark}
           />
         }
-        rightAction={() => {
+        leftAction={() => {
           if (isDarkmode) {
             setTheme("light");
           } else {
             setTheme("dark");
           }
+        }}
+        rightContent={
+          <Ionicons
+            name="log-out-outline"
+            size={20}
+            color={isDarkmode ? themeColor.white100 : themeColor.dark}
+          />
+        }
+        rightAction={() => {
+          let responce = confirm("are you sure you want to logout?");
+          if(responce)
+            auth.assignUser(false);
         }}
       />
       <View
@@ -49,21 +62,42 @@ export default function ({ navigation }) {
               These UI components provided by Rapi UI
             </Text>
             <Button
-              style={{ marginTop: 10 }}
-              text="Rapi UI Documentation"
-              status="info"
-              onPress={() => Linking.openURL("https://rapi-ui.kikiding.space/")}
-            />
-            <Button
-              text="Go to second screen"
+              text="Proposals"
+              status="warning"
               onPress={() => {
-                navigation.navigate("SecondScreen");
+                navigation.navigate("Proposals");
               }}
               style={{
                 marginTop: 10,
               }}
             />
             <Button
+              text="Create Proposal"
+              status="warning"
+              onPress={() => {
+                navigation.navigate("NewProposals");
+              }}
+              style={{
+                marginTop: 10,
+              }}
+            />
+            {/* <Button
+              style={{ marginTop: 10 }}
+              text="Rapi UI Documentation"
+              status="info"
+              onPress={() => Linking.openURL("https://rapi-ui.kikiding.space/")}
+            /> */}
+            {/* <Button
+              text="Go to second screen"
+              status="success"
+              onPress={() => {
+                navigation.navigate("SecondScreen");
+              }}
+              style={{
+                marginTop: 10,
+              }}
+            /> */}
+            {/* <Button
               status="danger"
               text="Logout"
               onPress={() => {
@@ -72,7 +106,7 @@ export default function ({ navigation }) {
               style={{
                 marginTop: 10,
               }}
-            />
+            /> */}
           </SectionContent>
         </Section>
       </View>

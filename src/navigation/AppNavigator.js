@@ -12,6 +12,8 @@ import Register from "../screens/auth/Register";
 import ForgetPassword from "../screens/auth/ForgetPassword";
 
 import Loading from "../screens/utils/Loading";
+import Proposals from "../screens/Components/Proposals";
+import NewProposals from "../screens/Components/NewProposal";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -41,6 +43,8 @@ const Main = () => {
       
       <MainStack.Screen name="Home" component={Home} />
       <MainStack.Screen name="SecondScreen" component={SecondScreen} />
+      <MainStack.Screen name="Proposals" component={Proposals} />
+      <MainStack.Screen name="NewProposals" component={NewProposals} />
     </MainStack.Navigator>
   );
 };

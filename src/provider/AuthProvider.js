@@ -1,17 +1,31 @@
 import React, { createContext, useState, useEffect } from "react";
-
+import { APIEndPoint, EnvironmentVariables } from '../../envirnment';
+const AWS = require('aws-sdk');
+const secretMngrClient = new AWS.SecretsManager();
 const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
-  let endpoint = "http://localhost:3080/api/v1";
   const [loading, setLoading] = useState(false);
   const [companySetting , setcompanySetting] = useState('');
 
   useEffect(() => {
+    setEnvVariables();
     getCompanySettingInfo();
     ValidateToken();
   }, []);
+
+  function setEnvVariables(){
+    return new Promise((resolve,reject)=>{
+      let _env = process.env || {};
+      for(const key in EnvironmentVariables){
+        let _object = {}; 
+        _object[key] = EnvironmentVariables[key];
+        Object.assign(_env , _object)
+      }
+      // process.env = _env;
+    })
+  }
 
   function assignUser(istrue){
     if(!istrue){
@@ -30,7 +44,7 @@ export const AuthProvider = (props) => {
             'Accept': 'application/json',
         })
       }
-      const resp = await fetch(`${endpoint}/authorizeAccess`, {
+      const resp = await fetch(`${APIEndPoint}/authorizeAccess`, {
         method: 'POST',
         body: headeroptions,
         // headers: new Headers({
@@ -53,8 +67,15 @@ export const AuthProvider = (props) => {
   async function getCompanySettingInfo(){
     try{
       setLoading(true);
-      const url = `${endpoint}/companysetting`;
+      const url = `${APIEndPoint}/companysetting`;
+      let headers = new Headers();
+
+      headers.append('Access-Control-Allow-Origin', 'http://localhost:19006');
+      headers.append('Access-Control-Allow-Credentials', true);
+
+      headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
       const data = await fetch(url);
+      // const data = await fetch(url+{headers:headers});
       const _response = await data.json();
       localStorage.setItem('companysetting',JSON.stringify(_response.data));
       setcompanySetting(_response.data);
