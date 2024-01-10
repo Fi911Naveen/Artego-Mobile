@@ -20,6 +20,9 @@ import { FormInput } from "../../common/FormInput";
 import { MerchantDetails, MerchantObject } from "../../GetTypes/merchant";
 import { EntityTypeMaster } from "../../enums/entitytypemaster";
 import { APIEndPoint } from "../../../envirnment";
+import { Menus } from "../../enums/menus";
+import * as  utility from '../../utility/commonutility';
+import Proposals from "./Proposals";
 
 export default function NewProposals() {
     const auth = useContext(AuthContext);
@@ -70,9 +73,9 @@ export default function NewProposals() {
         });
         const data = await resp.json();
         if(data.status == true){
-            alert(data.message)
+            alert(data.message);
         }else{
-            alert(data.message)
+            alert(data.message);
         }
         setLoading(false);
     }
@@ -81,6 +84,11 @@ export default function NewProposals() {
         setDBAName('');
         setBusinessEmail('');
     }
+
+    function CheckPermission(permissionId: number) {
+        if (permissionId != undefined && permissionId != null)
+          return utility.HasPermission(permissionId);
+      }
 
     return (
         <Layout>
