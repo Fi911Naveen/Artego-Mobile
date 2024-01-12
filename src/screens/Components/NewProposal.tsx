@@ -53,31 +53,36 @@ export default function NewProposals() {
             return;
         }
         setLoading(true);
-        let _merchantData = JSON.parse(JSON.stringify(MerchantObject));
-        _merchantData.sectionId = EntityTypeMaster.QuickFill.toString();
-        _merchantData.businessInformation.agentId = agentId;
-        _merchantData.businessInformation.agentEmail = agentEmail;
-        _merchantData.businessInformation.dba.name = dba_name;
-        _merchantData.businessInformation.contactEmail = businessEmail;
-        _merchantData.businessInformation.agentFirstName = userData.first_name;
-        _merchantData.businessInformation.agentLastName = userData.last_name;
-        _merchantData.businessInformation.contactName = contactName;
-        
-        const resp = await fetch(`${APIEndPoint}/merchants`, {
-            method: 'POST',
-            headers: new Headers({
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              }),
-            body: JSON.stringify(_merchantData)
-        });
-        const data = await resp.json();
-        if(data.status == true){
-            alert(data.message);
-        }else{
-            alert(data.message);
+        try{
+            let _merchantData = JSON.parse(JSON.stringify(MerchantObject));
+            _merchantData.sectionId = EntityTypeMaster.QuickFill.toString();
+            _merchantData.businessInformation.agentId = agentId;
+            _merchantData.businessInformation.agentEmail = agentEmail;
+            _merchantData.businessInformation.dba.name = dba_name;
+            _merchantData.businessInformation.contactEmail = businessEmail;
+            _merchantData.businessInformation.agentFirstName = userData.first_name;
+            _merchantData.businessInformation.agentLastName = userData.last_name;
+            _merchantData.businessInformation.contactName = contactName;
+            
+            const resp = await fetch(`${APIEndPoint}/merchants`, {
+                method: 'POST',
+                headers: new Headers({
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  }),
+                body: JSON.stringify(_merchantData)
+            });
+            const data = await resp.json();
+            if(data.status == true){
+                alert(data.message);
+            }else{
+                alert(data.message);
+            }
+        }catch(err){
+            alert(err);
+        }finally{
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     function ResetValues(){

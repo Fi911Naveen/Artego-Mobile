@@ -14,6 +14,8 @@ import ForgetPassword from "../screens/auth/ForgetPassword";
 import Loading from "../screens/utils/Loading";
 import Proposals from "../screens/Components/Proposals";
 import NewProposals from "../screens/Components/NewProposal";
+import ResetPassword from "../screens/auth/ResetPassword";
+import ValidateOTP from "../screens/auth/ValidateOTP";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ const Auth = () => {
       <AuthStack.Screen name="Login" component={Login} />
       <AuthStack.Screen name="Register" component={Register} />
       <AuthStack.Screen name="ForgetPassword" component={ForgetPassword} />
+      <AuthStack.Screen name="ValidateOTP" component={ValidateOTP} />
+      <AuthStack.Screen name="ResetPassword" component={ResetPassword} />
     </AuthStack.Navigator>
   );
 };

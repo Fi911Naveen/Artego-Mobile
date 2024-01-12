@@ -18,15 +18,22 @@ import { APIEndPoint } from "../../../envirnment";
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
-  const [email, setEmail] = useState("");
+  const [otp, setOTP] = useState("");
   const [loading, setLoading] = useState(false);
+  let user = localStorage.getItem("resetpassworduserdata") ? JSON.parse(localStorage.getItem("resetpassworduserdata")) : {};
 
-  async function forget() {
+  async function ValidateOTP(){
+    console.log("user",user)
+    if(!otp){
+      alert("otp is mandatory");
+      return;
+    }
     setLoading(true);
     let reqdata = {
-      email : email
+      username : user ? user.email : null,
+      passcode : otp
     }
-    const resp = await fetch(`${APIEndPoint}/validateforgotpasswordmail`, {
+    const resp = await fetch(`${APIEndPoint}/validateforgotpasswordotp`, {
       method: 'POST',
       headers: new Headers({
         'Accept': 'application/json',
@@ -37,8 +44,9 @@ export default function ({ navigation }) {
     const responce = await resp.json();
     console.log(responce);
     if(responce.status){
-      localStorage.setItem("resetpassworduserdata",JSON.stringify(responce.data));
-      navigation.navigate("ValidateOTP")
+      navigation.navigate("ResetPassword")
+    }else{
+      alert(responce.message)
     }
     setLoading(false);
   }
@@ -85,55 +93,29 @@ export default function ({ navigation }) {
               }}
               require
             >
-              Forget Password
+              OTP Validation
             </Text>
-            <Text>Email</Text>
+            <Text>Enter OTP</Text>
             <TextInput
-              containerStyle={{ marginTop: 15 }}
-              placeholder="Enter your email"
-              value={email}
+              containerStyle={{ marginTop: 5,marginBottom:5 }}
+              placeholder="Enter your passcode"
+              value={otp}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
-              keyboardType="email-address"
-              onChangeText={(text) => setEmail(text)}
+              keyboardType="default"
+              onChangeText={(text) => setOTP(text)}
             />
             <Button
-              text={loading ? "Loading..." : "Validate & send OTP"}
+              text={loading ? "Validating..." : "Validate OTP"}
               onPress={() => {
-                forget();
+                ValidateOTP();
               }}
               style={{
                 marginTop: 20,
               }}
               disabled={loading}
             />
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 15,
-                justifyContent: "center",
-              }}
-            >
-              <Text size="md">Remember Password?</Text>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("Login");
-                }}
-              >
-                <Text
-                  size="md"
-                  fontWeight="bold"
-                  style={{
-                    marginLeft: 5,
-                  }}
-                >
-                  Login here
-                </Text>
-              </TouchableOpacity>
-            </View>
             <View
               style={{
                 flexDirection: "row",
