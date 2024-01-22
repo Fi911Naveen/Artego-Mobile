@@ -21,7 +21,7 @@ export default function ({ navigation }) {
   return (
     <Layout>
       <TopNav
-        middleContent="Home" 
+        middleContent="Merchants" 
         leftContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
@@ -59,7 +59,7 @@ export default function ({ navigation }) {
         <Section style={{ marginTop: 20 }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
-              These UI components provided by Rapi UI
+              Welcome to Merchant section
             </Text>
             <Button
               text="Proposals"

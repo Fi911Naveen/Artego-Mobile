@@ -2,6 +2,12 @@ import React, { useContext, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthContext, AuthProvider } from "../provider/AuthProvider";
+import { useTheme, themeColor } from "react-native-rapi-ui";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import TabBarIcon from "../components/utils/TabBarIcon";
+import TabBarText from "../components/utils/TabBarText";
+import { Ionicons } from "@expo/vector-icons";
+
 // Main
 import Home from "../screens/Home";
 import SecondScreen from "../screens/SecondScreen";
@@ -16,6 +22,8 @@ import Proposals from "../screens/Components/Proposals";
 import NewProposals from "../screens/Components/NewProposal";
 import ResetPassword from "../screens/auth/ResetPassword";
 import ValidateOTP from "../screens/auth/ValidateOTP";
+import Dashboard from "../screens/Dashboard";
+import NewUser from "../screens/Components/Users/NewUser";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -44,12 +52,79 @@ const Main = () => {
         headerShown: false,
       }}
     >
-      
+      <MainStack.Screen name="MainTabs" component={MainTabs} />
       <MainStack.Screen name="Home" component={Home} />
       <MainStack.Screen name="SecondScreen" component={SecondScreen} />
       <MainStack.Screen name="Proposals" component={Proposals} />
       <MainStack.Screen name="NewProposals" component={NewProposals} />
     </MainStack.Navigator>
+  );
+};
+
+const Tabs = createBottomTabNavigator();
+
+const MainTabs = () => {
+  const { isDarkmode } = useTheme();
+  return (
+    <Tabs.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          borderTopColor: isDarkmode ? themeColor.dark100 : "#c0c0c0",
+          backgroundColor: isDarkmode ? themeColor.dark200 : "#ffffff",
+        },
+      }}
+    >
+      {/* these icons using Ionicons */}
+      <Tabs.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarText focused={focused} title="Dashboard" />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} icon={"md-home"} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Merchants"
+        component={Home}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarText focused={focused} title="Merchants" />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} icon={"business"} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Users"
+        component={NewUser}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarText focused={focused} title="Users" />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} icon={"person-circle-outline"} />
+          ),
+        }}
+      />
+      {/* <Tabs.Screen
+        name="NewProposals"
+        component={NewProposals}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <TabBarText focused={focused} title="NewProposals" />
+          ),
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} icon={"ios-information-circle"} />
+          ),
+        }}
+      /> */}
+    </Tabs.Navigator>
   );
 };
 
