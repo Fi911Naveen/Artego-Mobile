@@ -15,20 +15,20 @@ export default function ({ navigation }) {
     <Layout>
       <TopNav
         middleContent="Dashboard" 
-        leftContent={
-          <Ionicons
-            name={isDarkmode ? "sunny" : "moon"}
-            size={20}
-            color={isDarkmode ? themeColor.white100 : themeColor.dark}
-          />
-        }
-        leftAction={() => {
-          if (isDarkmode) {
-            setTheme("light");
-          } else {
-            setTheme("dark");
-          }
-        }}
+        // leftContent={
+        //   <Ionicons
+        //     name={isDarkmode ? "sunny" : "moon"}
+        //     size={20}
+        //     color={isDarkmode ? themeColor.white100 : themeColor.dark}
+        //   />
+        // }
+        // leftAction={() => {
+        //   if (isDarkmode) {
+        //     setTheme("light");
+        //   } else {
+        //     setTheme("dark");
+        //   }
+        // }}
         rightContent={
           <Ionicons
             name="log-out-outline"

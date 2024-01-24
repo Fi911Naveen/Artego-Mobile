@@ -11,12 +11,12 @@ import {
   themeColor
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
-import { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../../provider/AuthProvider";
 import { useNavigation } from '@react-navigation/native';
 import querystring from 'querystring';
-import { APIEndPoint } from "../../../envirnment";
-import { Menus } from "../../enums/menus";
-import * as  utility from '../../utility/commonutility';
+import { APIEndPoint } from "../../../../envirnment";
+import { Menus } from "../../../enums/menus";
+import * as  utility from '../../../utility/commonutility';
 
 type MerchantDetails = {
   merchant_id :any;
@@ -179,20 +179,20 @@ export default function Proposals() {
     <Layout>
       <TopNav
         middleContent="Proposals"
-        leftContent1={
-          <Ionicons
-            name={isDarkmode ? "sunny" : "moon"}
-            size={20}
-            color={isDarkmode ? themeColor.white100 : themeColor.dark}
-          />
-        }
-        leftAction1={() => {
-          if (isDarkmode) {
-            setTheme("light");
-          } else {
-            setTheme("dark");
-          }
-        }}
+        // leftContent1={
+        //   <Ionicons
+        //     name={isDarkmode ? "sunny" : "moon"}
+        //     size={20}
+        //     color={isDarkmode ? themeColor.white100 : themeColor.dark}
+        //   />
+        // }
+        // leftAction1={() => {
+        //   if (isDarkmode) {
+        //     setTheme("light");
+        //   } else {
+        //     setTheme("dark");
+        //   }
+        // }}
         leftContent={
           <Ionicons
             name="chevron-back"
@@ -253,7 +253,7 @@ export default function Proposals() {
                     height: 55,
                     width: 55,
                   }}
-                  source={require("../../../assets/user.png")}
+                  source={require("../../../../assets/user.png")}
                 />
               </div>
               <div>

@@ -1,5 +1,11 @@
 import React ,{useContext} from "react";
-import { View, Linking } from "react-native";
+import {
+    ScrollView,
+    TouchableOpacity,
+    View,
+    KeyboardAvoidingView,
+    Image,
+  } from "react-native";
 import {
   Layout,
   Button,
@@ -21,7 +27,7 @@ export default function ({ navigation }) {
   return (
     <Layout>
       <TopNav
-        middleContent="Merchants" 
+        middleContent="Setup" 
         // leftContent={
         //   <Ionicons
         //     name={isDarkmode ? "sunny" : "moon"}
@@ -59,49 +65,23 @@ export default function ({ navigation }) {
         <Section style={{ marginTop: 20 }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
-              Welcome to Merchant section
+              Welcome to Setup section
             </Text>
             <Button
-              text="Proposals"
+              text="Admin-Users"
               status="warning"
               onPress={() => {
-                navigation.navigate("Proposals");
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            />
-            <Button
-              text="Create Proposal"
-              status="warning"
-              onPress={() => {
-                navigation.navigate("NewProposals");
+                navigation.navigate("UsersHome");
               }}
               style={{
                 marginTop: 10,
               }}
             />
             {/* <Button
-              style={{ marginTop: 10 }}
-              text="Rapi UI Documentation"
-              status="info"
-              onPress={() => Linking.openURL("https://rapi-ui.kikiding.space/")}
-            /> */}
-            {/* <Button
-              text="Go to second screen"
-              status="success"
+              text="Create User"
+              status="warning"
               onPress={() => {
-                navigation.navigate("SecondScreen");
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            /> */}
-            {/* <Button
-              status="danger"
-              text="Logout"
-              onPress={() => {
-                auth.assignUser(false);
+                navigation.navigate("NewUser");
               }}
               style={{
                 marginTop: 10,
@@ -109,6 +89,30 @@ export default function ({ navigation }) {
             /> */}
           </SectionContent>
         </Section>
+        <View
+            style={{
+            flexDirection: "row",
+            alignItems: "center",
+            marginTop: 30,
+            justifyContent: "center",
+            }}
+        >
+            <TouchableOpacity
+            onPress={() => {
+                isDarkmode ? setTheme("light") : setTheme("dark");
+            }}
+            >
+            <Text
+                size="md"
+                fontWeight="bold"
+                style={{
+                marginLeft: 5,
+                }}
+            >
+                {isDarkmode ? "☀️ light theme" : "🌑 dark theme"}
+            </Text>
+            </TouchableOpacity>
+        </View>
       </View>
     </Layout>
   );

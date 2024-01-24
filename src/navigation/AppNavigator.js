@@ -18,12 +18,15 @@ import Register from "../screens/auth/Register";
 import ForgetPassword from "../screens/auth/ForgetPassword";
 
 import Loading from "../screens/utils/Loading";
-import Proposals from "../screens/Components/Proposals";
-import NewProposals from "../screens/Components/NewProposal";
+import Proposals from "../screens/Components/Merchants/Proposals";
+import NewProposals from "../screens/Components/Merchants/NewProposal";
 import ResetPassword from "../screens/auth/ResetPassword";
 import ValidateOTP from "../screens/auth/ValidateOTP";
 import Dashboard from "../screens/Dashboard";
 import NewUser from "../screens/Components/Users/NewUser";
+import UsersHome from "../screens/UsersHome";
+import AllUsers from "../screens/Components/Users/AllUsers";
+import SetupHome from "../screens/SetupHome";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -57,6 +60,10 @@ const Main = () => {
       <MainStack.Screen name="SecondScreen" component={SecondScreen} />
       <MainStack.Screen name="Proposals" component={Proposals} />
       <MainStack.Screen name="NewProposals" component={NewProposals} />
+      <MainStack.Screen name="UsersHome" component={UsersHome} />
+      <MainStack.Screen name="AllUsers" component={AllUsers} />
+      <MainStack.Screen name="NewUser" component={NewUser} />
+      <MainStack.Screen name="SetupHome" component={SetupHome} />
     </MainStack.Navigator>
   );
 };
@@ -101,29 +108,17 @@ const MainTabs = () => {
         }}
       />
       <Tabs.Screen
-        name="Users"
-        component={NewUser}
+        name="Setup"
+        component={SetupHome}
         options={{
           tabBarLabel: ({ focused }) => (
-            <TabBarText focused={focused} title="Users" />
+            <TabBarText focused={focused} title="Setup" />
           ),
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} icon={"person-circle-outline"} />
+            <TabBarIcon focused={focused} icon={"settings-sharp"} />
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="NewProposals"
-        component={NewProposals}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <TabBarText focused={focused} title="NewProposals" />
-          ),
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} icon={"ios-information-circle"} />
-          ),
-        }}
-      /> */}
     </Tabs.Navigator>
   );
 };

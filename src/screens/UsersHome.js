@@ -21,7 +21,15 @@ export default function ({ navigation }) {
   return (
     <Layout>
       <TopNav
-        middleContent="Merchants" 
+        middleContent="Users Home" 
+        leftContent={
+          <Ionicons
+            name="chevron-back"
+            size={20}
+            color={isDarkmode ? themeColor.white100 : themeColor.dark}
+          />
+        }
+        leftAction={() => navigation.goBack()}
         // leftContent={
         //   <Ionicons
         //     name={isDarkmode ? "sunny" : "moon"}
@@ -59,54 +67,28 @@ export default function ({ navigation }) {
         <Section style={{ marginTop: 20 }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
-              Welcome to Merchant section
+              Welcome to Users section
             </Text>
             <Button
-              text="Proposals"
+              text="All Users"
               status="warning"
               onPress={() => {
-                navigation.navigate("Proposals");
+                navigation.navigate("AllUsers");
               }}
               style={{
                 marginTop: 10,
               }}
             />
             <Button
-              text="Create Proposal"
+              text="Create User"
               status="warning"
               onPress={() => {
-                navigation.navigate("NewProposals");
+                navigation.navigate("NewUser");
               }}
               style={{
                 marginTop: 10,
               }}
             />
-            {/* <Button
-              style={{ marginTop: 10 }}
-              text="Rapi UI Documentation"
-              status="info"
-              onPress={() => Linking.openURL("https://rapi-ui.kikiding.space/")}
-            /> */}
-            {/* <Button
-              text="Go to second screen"
-              status="success"
-              onPress={() => {
-                navigation.navigate("SecondScreen");
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            /> */}
-            {/* <Button
-              status="danger"
-              text="Logout"
-              onPress={() => {
-                auth.assignUser(false);
-              }}
-              style={{
-                marginTop: 10,
-              }}
-            /> */}
           </SectionContent>
         </Section>
       </View>

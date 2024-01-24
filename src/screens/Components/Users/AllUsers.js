@@ -14,7 +14,7 @@ export default function ({ navigation }) {
   return (
     <Layout>
       <TopNav
-        middleContent="Users" 
+        middleContent="All Users" 
         // leftContent={
         //   <Ionicons
         //     name={isDarkmode ? "sunny" : "moon"}

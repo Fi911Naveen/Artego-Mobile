@@ -13,6 +13,9 @@ export default (props) => {
             : themeColor.primary
           : "rgb(143, 155, 179)",
         fontSize: 10,
+        top: 30,
+        alignContent: "center",
+        position: "absolute"
       }}
     >
       {props.title}

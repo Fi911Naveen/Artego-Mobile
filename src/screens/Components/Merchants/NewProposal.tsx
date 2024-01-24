@@ -12,16 +12,16 @@ import {
     TextInput,
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
-import { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../../provider/AuthProvider";
 import { useNavigation } from '@react-navigation/native';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FormInput } from "../../common/FormInput";
-import { MerchantDetails, MerchantObject } from "../../GetTypes/merchant";
-import { EntityTypeMaster } from "../../enums/entitytypemaster";
-import { APIEndPoint } from "../../../envirnment";
-import { Menus } from "../../enums/menus";
-import * as  utility from '../../utility/commonutility';
+import { FormInput } from "../../../common/FormInput";
+import { MerchantDetails, MerchantObject } from "../../../GetTypes/merchant";
+import { EntityTypeMaster } from "../../../enums/entitytypemaster";
+import { APIEndPoint } from "../../../../envirnment";
+import { Menus } from "../../../enums/menus";
+import * as  utility from '../../../utility/commonutility';
 import Proposals from "./Proposals";
 
 export default function NewProposals() {
@@ -99,20 +99,20 @@ export default function NewProposals() {
         <Layout>
             <TopNav
                 middleContent="Create Proposals"
-                leftContent1={
-                    <Ionicons
-                        name={isDarkmode ? "sunny" : "moon"}
-                        size={20}
-                        color={isDarkmode ? themeColor.white100 : themeColor.dark}
-                    />
-                }
-                leftAction1={() => {
-                    if (isDarkmode) {
-                        setTheme("light");
-                    } else {
-                        setTheme("dark");
-                    }
-                }}
+                // leftContent1={
+                //     <Ionicons
+                //         name={isDarkmode ? "sunny" : "moon"}
+                //         size={20}
+                //         color={isDarkmode ? themeColor.white100 : themeColor.dark}
+                //     />
+                // }
+                // leftAction1={() => {
+                //     if (isDarkmode) {
+                //         setTheme("light");
+                //     } else {
+                //         setTheme("dark");
+                //     }
+                // }}
                 leftContent={
                     <Ionicons
                         name="chevron-back"
