@@ -1,4 +1,4 @@
-import React ,{useContext} from "react";
+import React ,{useContext, useEffect} from "react";
 import { View } from "react-native";
 import {
   Layout,
@@ -15,6 +15,13 @@ export default function NewUser() {
   const { isDarkmode, setTheme } = useTheme();
   let navigation = useNavigation();
   const auth = useContext(AuthContext);
+
+  useEffect(() => {
+    if(!localStorage.getItem('userToken')){
+      auth.assignUser(false);
+      return;
+    }
+  }, []);
 
   return (
     <Layout>

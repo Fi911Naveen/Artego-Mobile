@@ -20,6 +20,13 @@ export default function MyProfile() {
   let navigation = useNavigation();
   const auth = useContext(AuthContext);
 
+  useEffect(() => {
+    if(!localStorage.getItem('userToken')){
+      auth.assignUser(false);
+      return;
+    }
+  }, []);
+
   return (
     <Layout>
       <TopNav

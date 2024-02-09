@@ -30,6 +30,10 @@ export default function AllUsers() {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
+    if(!localStorage.getItem('userToken')){
+      auth.assignUser(false);
+      return;
+    }
     getAllUsers();
   }, []);
 

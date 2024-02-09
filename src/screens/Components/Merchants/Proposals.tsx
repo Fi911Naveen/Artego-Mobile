@@ -96,6 +96,10 @@ export default function Proposals() {
   let pageName : string = "contract";
 
   useEffect(() => {
+    if(!localStorage.getItem('userToken')){
+      auth.assignUser(false);
+      return;
+    }
     // getMerchantBasicInfo();
     getProposals();
   }, []);

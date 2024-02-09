@@ -40,6 +40,10 @@ export default function NewProposals() {
     let name;
 
     useEffect(() => {
+        if(!localStorage.getItem('userToken')){
+            auth.assignUser(false);
+            return;
+        }
         userData = JSON.parse(userData);
         if(userData){
             setAgentId(userData['id']);

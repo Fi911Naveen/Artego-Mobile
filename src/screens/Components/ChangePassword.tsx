@@ -28,6 +28,13 @@ export default function ChangePassword() {
   const [loading, setLoading] = useState(false);
   let user :any = localStorage.getItem("userinfo") || {};
 
+  useEffect(() => {
+    if(!localStorage.getItem('userToken')){
+      auth.assignUser(false);
+      return;
+    }
+  }, []);
+
   async function ResetPassword(){
     if(password == null || password.toString() == "" || confirmPassword == null || confirmPassword.toString() == ""){
         alert("password fields are mandatory");
