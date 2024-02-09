@@ -125,6 +125,7 @@ export default function Proposals() {
       let dataparams:any = sendObservableObject(0);
       dataparams.Moduleid = 1;
       const data = `${APIEndPoint}/merchants?${querystring.stringify(dataparams)}`;
+      console.log("data ",data);
       dataparams["showcount"] = 1;
       const records = `${APIEndPoint}/merchants?${querystring.stringify(dataparams)}`;
       const _dataresponse = await fetch(data);

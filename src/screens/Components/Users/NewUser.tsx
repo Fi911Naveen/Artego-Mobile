@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useContext} from "react";
 import { View } from "react-native";
 import {
   Layout,
@@ -8,13 +8,18 @@ import {
   useTheme,
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from "../../../provider/AuthProvider";
 
-export default function ({ navigation }) {
+export default function NewUser() {
   const { isDarkmode, setTheme } = useTheme();
+  let navigation = useNavigation();
+  const auth = useContext(AuthContext);
+
   return (
     <Layout>
       <TopNav
-        middleContent="Users" 
+        middleContent="Create User" 
         // leftContent={
         //   <Ionicons
         //     name={isDarkmode ? "sunny" : "moon"}

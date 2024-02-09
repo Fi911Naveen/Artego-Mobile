@@ -31,6 +31,6 @@ export const EnvironmentVariables = {
     clientId: "0oa3sl5bacbIvsqIV5d7"
 }
 
-export const APIEndPoint = "http://localhost:3080/api/v1";                      // local
+export let APIEndPoint = "http://localhost:3080/api/v1";                      // local
 // export const APIEndPoint = "https://qa7.artegosandbox.com/api/v1";           // QA
 // export const APIEndPoint = "https://corporate-sbx.fi911.com/api/v1";         // SBX
