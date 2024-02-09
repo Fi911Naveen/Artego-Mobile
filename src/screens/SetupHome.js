@@ -68,6 +68,16 @@ export default function ({ navigation }) {
               Welcome to Setup section
             </Text>
             <Button
+              text="My Profile"
+              status="warning"
+              onPress={() => {
+                navigation.navigate("MyProfile");
+              }}
+              style={{
+                marginTop: 10,
+              }}
+            />
+            <Button
               text="Admin-Users"
               status="warning"
               onPress={() => {
@@ -77,16 +87,26 @@ export default function ({ navigation }) {
                 marginTop: 10,
               }}
             />
-            {/* <Button
-              text="Create User"
+            <Button
+              text="Change Password"
               status="warning"
               onPress={() => {
-                navigation.navigate("NewUser");
+                navigation.navigate("ChangePassword");
               }}
               style={{
                 marginTop: 10,
               }}
-            /> */}
+            />
+            <Button
+              text="Settings"
+              status="warning"
+              onPress={() => {
+                navigation.navigate("UsersHome");
+              }}
+              style={{
+                marginTop: 10,
+              }}
+            />
           </SectionContent>
         </Section>
         <View
