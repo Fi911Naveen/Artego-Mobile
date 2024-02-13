@@ -108,7 +108,7 @@ export default function ({ navigation }) {
               text="Settings"
               status="warning"
               onPress={() => {
-                navigation.navigate("UsersHome");
+                navigation.navigate("SettingsHome");
               }}
               style={{
                 marginTop: 10,

@@ -29,6 +29,7 @@ import AllUsers from "../screens/Components/Users/AllUsers";
 import SetupHome from "../screens/SetupHome";
 import MyProfile from "../screens/Components/MyProfile";
 import ChangePassword from "../screens/Components/ChangePassword";
+import SettingsHome from "../screens/SettingsHome";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -68,6 +69,7 @@ const Main = () => {
       <MainStack.Screen name="SetupHome" component={SetupHome} />
       <MainStack.Screen name="MyProfile" component={MyProfile} />
       <AuthStack.Screen name="ChangePassword" component={ChangePassword} />
+      <AuthStack.Screen name="SettingsHome" component={SettingsHome} />
     </MainStack.Navigator>
   );
 };
